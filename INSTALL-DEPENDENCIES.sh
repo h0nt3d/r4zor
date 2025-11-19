@@ -1,5 +1,5 @@
 cd backend
-npm install express
+npm install express formidable
 
 sleep 2
 
