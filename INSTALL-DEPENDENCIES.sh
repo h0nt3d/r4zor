@@ -3,5 +3,5 @@ npm install express
 
 sleep 2
 
-cd ../frontend
-npm install vite
+cd ../r4zor_frontend
+npm install
