@@ -8,7 +8,7 @@ function Upload() {
 				<input type="file" id="fileUpload" name="fileUpload"/>
 			</div>
 			<div>
-				<input type="submit" value="Upload"/>
+				<button type="submit">Upload</button>
 			</div>
 		</div>
 	);
