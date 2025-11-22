@@ -45,7 +45,7 @@ function Upload() {
 				<input type="file" id="fileUpload" name="fileUpload" onChange={handleFileChange} multiple/>
 			</div>
 			<div class="uploadButton">
-				<button oinClick={handleUpload}>Upload</button>
+				<button onClick={handleUpload}>Upload</button>
 			</div>
 		</div>
 	);
