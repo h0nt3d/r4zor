@@ -45,4 +45,15 @@ router.post('/api/upload', (req, res, next) => {
 	});
 });
 
+router.get('/api/getFiles', (req, res, next) =>  {
+	const directoryPath = path.join(__dirname, '../uploads');
+
+	fs.readdir(directoryPath, (err, files) => {
+		if (err) {
+			return res.status(500).json({ error: 'Unable to scan directory', details: err });
+		}
+		res.json({ files });
+	});
+});
+
 module.exports = router;
