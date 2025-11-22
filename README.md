@@ -4,6 +4,6 @@
 Local and Online Media Streaming Platform / File Server 
 
 ## Current Functionality:
-![alt text](https://github.com/h0nt3d/r4zor/tree/main/imagez/1.0.0.png?raw=true)
+![alt text](https://github.com/h0nt3d/r4zor/blob/main/imagez/1.0.0.png?raw=true)
 
 - File Uploading
