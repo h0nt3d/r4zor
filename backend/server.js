@@ -17,28 +17,41 @@ app.get('/', (req, res) => {
 
 app.post('/api/upload', (req, res, next) => {
 	const form = new formidable.IncomingForm();
+	form.multiples = true;
 	form.parse(req, (err, fields, files) => {
-		if (err) {
-			next(err);
-			return;
-		}
-		const fileArr = files.someExpressFiles;
-		if (fileArr && fileArr.length > 0) {
-			const file = fileArr[0];
-			let storageDir = path.join(__dirname, 'uploads');
-			let filePath = path.join(storageDir, file.originalFilename);
+		if (err) return next(err);
 
-			fs.copyFile(file.filepath, filePath, function(err){
-				if (err) {
-					next(err);
-					return;
-				}
-				res.json(`File uploaded successfully: ${file.originalFilename}`)
-			});
+		let fileArr = files.someExpressFiles;
+		if (!fileArr) {
+			return res.status(400).json({ message: 'No files uploaded' });
 		}
-		else {
-			res.status(400).send('No file uploaded');
+
+		if (!Array.isArray(fileArr)) {
+			fileArr = [fileArr];
 		}
+
+		let storageDir = path.join(__dirname, 'uploads');
+		const savedFiles = [];
+
+		fileArr.forEach((file) => {
+			const filePath = path.join(storageDir, file.originalFilename);
+			try {
+				fs.copyFileSync(file.filepath, filePath);
+				savedFiles.push(file.originalFilename);
+			}
+			catch(err) {
+				console.error('Error saving file', file.originalFilename, err);
+			}
+		});
+
+		if (savedFiles.length === 0) {
+			return res.status(500).json({ message: 'Failed to save files' });
+		}
+
+		res.json({
+			message: 'Files uploaded successfully',
+			files: savedFiles
+		});
 	});
 });
 

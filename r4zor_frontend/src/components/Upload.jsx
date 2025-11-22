@@ -3,17 +3,20 @@ import React, { useState } from 'react'
 
 function Upload() {
 
-	const [file, setFile] = useState(null);
+	const [files, setFiles] = useState(null);
 	const host = import.meta.env.VITE_HOST_ADDRESS;
 
 	function handleFileChange(e) {
-		setFile(e.target.files[0]);
+		setFiles(Array.from(e.target.files));
 	}
 
 	async function handleUpload() {
 		try {
 			const formData = new FormData();
-			formData.append("someExpressFiles", file);
+			for (let i = 0; i < files.length; i++) {
+				formData.append('someExpressFiles', files[i]);
+			}
+			formData.append("someExpressFiles", files);
 		
 			
 			const res = await fetch(`http://${host}:5000/api/upload`, {
@@ -35,7 +38,7 @@ function Upload() {
 		<div>
 			<div>
 				<h1>Upload</h1>
-				<input type="file" id="fileUpload" name="fileUpload" onChange={handleFileChange}/>
+				<input type="file" id="fileUpload" name="fileUpload" onChange={handleFileChange} multiple/>
 			</div>
 			<div>
 				<button onClick={handleUpload}>Upload</button>
