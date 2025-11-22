@@ -36,7 +36,7 @@ function Upload() {
 	}
 
 	return (
-		<div class="upload">
+		<div className="upload">
 			<a href="https://github.com/h0nt3d/r4zor">
 				<img src={logo} alt="Main Logo" className="logo"/>
 			</a>
@@ -44,7 +44,7 @@ function Upload() {
 				<h2>Upload File(s)</h2>
 				<input type="file" id="fileUpload" name="fileUpload" onChange={handleFileChange} multiple/>
 			</div>
-			<div class="uploadButton">
+			<div className="uploadButton">
 				<button onClick={handleUpload}>Upload</button>
 			</div>
 		</div>
