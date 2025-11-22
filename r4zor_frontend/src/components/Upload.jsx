@@ -41,7 +41,7 @@ function Upload() {
 				<img src={logo} alt="Main Logo" className="logo"/>
 			</a>
 			<div>
-				<h2>Upload File(s)</h2>
+				<h2 className="uploadButton" >Upload File(s)</h2>
 				<input type="file" id="fileUpload" name="fileUpload" onChange={handleFileChange} multiple/>
 			</div>
 			<div className="uploadButton">

@@ -1,19 +1,39 @@
 /* Upload.css */
 
+body {
+	background-color: black;
+}
+
+@font-face {
+	font-family: 'IBM_VGA_9x16';
+	src: url('../fonts/Ac437_IBM_VGA_9x16.ttf');
+}
+
+@font-face {
+	font-family: 'IBM_BIOS';
+	src: url('../fonts/Ac437_IBM_BIOS.ttf');
+}
+
+
 .upload {
-	display: grid;
-	justify-items: end;
+	display: grid;	
 	width: 100%;
-	border: 1px solid black;
+	border: 1px solid white;
 	position: absolute;
 	right: 0;
 	top: 0;
+	color: white;
 }
 
 .uploadButton {
-	position: relative; 
-	left: -70px;
-	margin-top: 10x;
+	font-family: 'IBM_VGA_9x16';
+	margin-top: 10px;
+	margin-bottom: 5px;
+	color: green;
+}
+
+.uploadButton button {
+	color: green;
 }
 
 .logo {
@@ -23,4 +43,10 @@
 	left: 0;
 	top: 0;
 
+}
+
+#fileUpload::file-selector-button {
+	content: '+';
+	background-color: green;
+	font-family: 'IBM_VGA_9x16';
 }
