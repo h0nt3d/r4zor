@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const formidable = require('formidable');
 const fs = require('fs');
 const path = require('path');
 
 const port = 5000
+
+app.use(cors());
 
 app.get('/', (req, res) => {
   	res.send('Homepage');
@@ -30,7 +33,7 @@ app.post('/api/upload', (req, res, next) => {
 					next(err);
 					return;
 				}
-				res.send(`File uploaded successfully: ${file.originalFilename}`)
+				res.json(`File uploaded successfully: ${file.originalFilename}`)
 			});
 		}
 		else {
@@ -39,7 +42,7 @@ app.post('/api/upload', (req, res, next) => {
 	});
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server listening on port ${port}`);
 });
 

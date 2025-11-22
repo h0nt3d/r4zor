@@ -1,5 +1,6 @@
 r4zor_frontend/node_modules
 r4zor_frontend/package-lock.json
+r4zor_frontend/.env
 
 backend/node_modules
 backend/package.json
