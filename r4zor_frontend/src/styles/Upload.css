@@ -46,7 +46,6 @@ body {
 }
 
 #fileUpload::file-selector-button {
-	content: '+';
 	background-color: green;
 	font-family: 'IBM_VGA_9x16';
 }
