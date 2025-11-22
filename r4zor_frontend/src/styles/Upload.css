@@ -1,0 +1,26 @@
+/* Upload.css */
+
+.upload {
+	display: grid;
+	justify-items: end;
+	width: 100%;
+	border: 1px solid black;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.uploadButton {
+	position: relative; 
+	left: -70px;
+	margin-top: 10x;
+}
+
+.logo {
+	display: grid;
+	justify-items: end;
+	position: absolute;
+	left: 0;
+	top: 0;
+
+}

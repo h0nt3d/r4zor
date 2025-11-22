@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-
+import '../styles/Upload.css';
+import logo from '../imagez/r4zorInverted.png';
 
 function Upload() {
 
@@ -35,13 +36,16 @@ function Upload() {
 	}
 
 	return (
-		<div>
+		<div class="upload">
+			<a href="https://github.com/h0nt3d/r4zor">
+				<img src={logo} alt="Main Logo" className="logo"/>
+			</a>
 			<div>
-				<h1>Upload</h1>
+				<h2>Upload File(s)</h2>
 				<input type="file" id="fileUpload" name="fileUpload" onChange={handleFileChange} multiple/>
 			</div>
-			<div>
-				<button onClick={handleUpload}>Upload</button>
+			<div class="uploadButton">
+				<button oinClick={handleUpload}>Upload</button>
 			</div>
 		</div>
 	);
