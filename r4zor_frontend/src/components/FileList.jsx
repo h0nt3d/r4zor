@@ -45,6 +45,7 @@ function FileList() {
 						<div
 						className="fileNameFolder"
 						onClick={() => toggleDirectory(item.name)}
+						class="bg-green-700 hover:bg-sky-700"
 						>
 							{isExpanded ? '[-]' : '[+]'} {item.name}
 						</div>
