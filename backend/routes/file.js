@@ -48,7 +48,23 @@ router.post('/api/upload', (req, res, next) => {
 });
 
 router.get('/api/download', (req, res, next) => {
-	
+	const { filename } = req.query;
+	if (!filename) {
+		return res.status(400).json({error: 'Filename required'});
+	}
+
+	const filePath = path.join(__dirname, '../uploads', filename);
+	fs.stat(filePath, (err, stat) => {
+		if (err) {
+			return res.status(404).json({ error: 'File not found' });
+		}
+
+		res.download(filePath, filename, (err) => {
+			if (err) {
+				return res.status(500).json({ error: 'Error sending file' });
+			}
+		});
+	});
 });
 
 router.get('/api/getFiles', (req, res, next) =>  {
