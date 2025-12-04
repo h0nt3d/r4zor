@@ -67,6 +67,28 @@ router.get('/api/download', (req, res, next) => {
 	});
 });
 
+router.get('/api/delete', (req, res, next) => {
+	const { filename } = req.query;
+	if (!filename) {
+		return res.status(400).json({error: 'Filename required'});
+	}
+
+	const sanitizedFilename = path.basename(filename);
+
+	const filePath = path.join(__dirname, '../uploads', sanitizedFilename);
+	fs.stat(filePath, (err, stat) => {
+		if (err) {
+			return res.status(404).json({ error: 'File not found' });
+		}
+		fs.unlink(filePath, (err) => {
+			if (err) {
+				return res.status(500).json({ error: 'Error deleting file' });
+			}
+			res.status(200).json({ message: 'File deleted successfully' });
+		});
+	});
+});
+
 router.get('/api/getFiles', (req, res, next) =>  {
 	const directoryPath = path.join(__dirname, '../uploads');
 
