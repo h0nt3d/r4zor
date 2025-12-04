@@ -31,6 +31,14 @@ function FileList() {
 			}
 		});
 	};
+	
+	const downloadFile = (filename) => {
+		const fileUrl = `http://${host}:5000/api/download?filename=${filename}`;
+		const link = document.createElement('a');
+		link.href = fileUrl;
+		link.download = filename;
+		link.click();
+	};
 
 	const renderFiles = (items) => {
 		const directories = items.filter(item => item.type === 'directory');
@@ -57,6 +65,12 @@ function FileList() {
 			{files.map((item, index) => (
 				<li key={index} className="fileItem">
 					<div className="fileName">{item.name}</div>
+					<button
+						className="bg-blue-500 text-white p-2 rounded"
+						onClick={() => downloadFile(item.name)}
+					>
+					Download
+					</button>
 				</li>
 			))}
 			</ul>

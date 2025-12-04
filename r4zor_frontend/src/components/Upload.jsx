@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/Upload.css';
-import logo from '../imagez/r4zorInverted.png';
+import logo from '../imagez/r4zorMain.png';
 
 function Upload() {
 

@@ -22,7 +22,7 @@
 }
 
 .fileList {
-	max-height: 800px;
+	max-height: 700px;
 	overflow-y: auto;
 	position: fixed;
 	top: 0;
@@ -32,7 +32,7 @@
 }
 
 .fileItems ul {
-	 max-height: 800px;
+	 max-height: 700px;
 	 overflow-y: auto;
 	font-family: 'IBM_VGA_9x16';
 	padding-left: 10px;
