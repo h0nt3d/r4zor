@@ -1,9 +1,7 @@
 # r4zor
-![alt text](https://github.com/h0nt3d/r4zor/blob/main/r4zor_frontend/src/imagez/r4zorInverted.png?raw=true)
-
 Local and Online Media Streaming Platform / File Server 
-
-## Current Functionality:
+![alt text](https://github.com/h0nt3d/r4zor/blob/main/imagez/r4zorMain.png?raw=true)
 ![alt text](https://github.com/h0nt3d/r4zor/blob/main/imagez/1.0.0.png?raw=true)
 
+## Current Functionality:
 - File Uploading
