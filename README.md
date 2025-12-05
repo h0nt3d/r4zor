@@ -14,3 +14,4 @@ frontend:
 
 ## Current Functionality:
 - File Uploading
+- File Downloading
