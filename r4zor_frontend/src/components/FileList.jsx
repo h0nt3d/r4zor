@@ -39,7 +39,22 @@ function FileList() {
 		link.download = filename;
 		link.click();
 	};
-
+	
+	const deleteFile = (filename) => {
+		const fileUrl = `http://${host}:5000/api/delete?filename=${filename}`;
+		fetch(fileUrl, {
+			method: 'GET',
+		})
+		.then((response) => {
+			if (response.ok) {
+				setFiles(prevFiles => prevFiles.filter(file => file.name !== filename));
+			}
+		})
+		.catch(error => {
+			console.error('Error:', error);
+		});
+	}
+		
 	const renderFiles = (items) => {
 		const directories = items.filter(item => item.type === 'directory');
 		const files = items.filter(item => item.type === 'file');
@@ -69,8 +84,15 @@ function FileList() {
 						className="bg-blue-500 text-white p-2 rounded"
 						onClick={() => downloadFile(item.name)}
 					>
-					Download
+					⬇︎
 					</button>
+					<button
+						className="bg-blue-500 text-white p-2 rounded"
+						onClick={() => deleteFile(item.name)}
+					>
+					🗑
+					</button>
+
 				</li>
 			))}
 			</ul>
