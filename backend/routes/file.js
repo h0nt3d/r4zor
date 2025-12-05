@@ -13,16 +13,18 @@ router.post('/api/upload', (req, res, next) => {
 	form.parse(req, (err, fields, files) => {
 		if (err) return next(err);
 
-		let fileArr = files.someExpressFiles;
-		if (!fileArr) {
-			return res.status(400).json({ message: 'No files uploaded' });
+		const directory = fields.directory[0];
+		const fileArr = files.someExpressFiles;
+
+		if (!directory || !fileArr) {
+			return res.status(400).json({ message: 'Directory or files missing' });
 		}
 
 		if (!Array.isArray(fileArr)) {
 			fileArr = [fileArr];
 		}
 
-		let storageDir = path.join(__dirname, '../uploads');
+		let storageDir = path.join(__dirname, '../uploads', directory);
 		const savedFiles = [];
 
 		fileArr.forEach((file) => {
