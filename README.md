@@ -40,7 +40,7 @@ Inside dist frontend directory <br>
 
 ## Backend
 Inside backend <br>
-node server.js
+`node server.js`
 
 # Future Implementation
 - Directory Creation on page
