@@ -34,8 +34,13 @@ Run installation <br>
 `./install`
 
 # Deployment
+## Frontend
 Inside dist frontend directory <br>
 `python -m http.server 3000`
+
+## Backend
+Inside backend <br>
+node server.js
 
 # Future Implementation
 - Directory Creation on page
