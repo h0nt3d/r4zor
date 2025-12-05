@@ -22,3 +22,18 @@ frontend:
 
 
 # Installation
+Compile installation script with make <br>
+`make`
+
+Run installation <br>
+`./install`
+
+# Deployment
+Inside dist frontend directory <br>
+`python -m http.server 3000`
+
+# Future Implementation
+- Directory Creation on page
+- File conversion (e.g png to jpg)
+- Custom HTTP
+- SSL Certificate
