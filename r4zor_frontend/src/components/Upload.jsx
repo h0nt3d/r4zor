@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../styles/Upload.css';
 import logo from '../imagez/r4zorMain.png';
 
-function Upload() {
+function Upload({}) {
 
 	const [files, setFiles] = useState(null);
 	const [directories, setDirectories] = useState([]);
@@ -56,6 +56,7 @@ function Upload() {
 			const data = await res.json();
 			console.log(data);
 			alert("Upload Succesful!");
+			window.location.reload();
 		}
 		catch (err) {
 			console.error(err);
