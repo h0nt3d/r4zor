@@ -24,8 +24,8 @@ frontend:
 
 # Installation
 Clone repository <br>
-`git clone https://github.com/h0nt3d/r4zor.git
-cd r4zor`
+`git clone https://github.com/h0nt3d/r4zor.git`
+`cd r4zor`
 
 Compile installation script with make <br>
 `make`
