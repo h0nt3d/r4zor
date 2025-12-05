@@ -1,5 +1,5 @@
 cd backend
-npm install express formidable
+npm install express formidable cors
 
 sleep 2
 
