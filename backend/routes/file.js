@@ -73,9 +73,8 @@ router.get('/api/delete', (req, res, next) => {
 		return res.status(400).json({error: 'Filename required'});
 	}
 
-	const sanitizedFilename = path.basename(filename);
 
-	const filePath = path.join(__dirname, '../uploads', sanitizedFilename);
+	const filePath = path.join(__dirname, '../uploads', filename);
 	fs.stat(filePath, (err, stat) => {
 		if (err) {
 			return res.status(404).json({ error: 'File not found' });

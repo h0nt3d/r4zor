@@ -32,30 +32,42 @@ function FileList() {
 		});
 	};
 	
-	const downloadFile = (filename) => {
-		const fileUrl = `http://${host}:5000/api/download?filename=${filename}`;
+	const downloadFile = (filename, pathInDirectory = '') => {
+		const fullFilename = pathInDirectory ? `${pathInDirectory}/${filename}` : filename;
+		const fileUrl = `http://${host}:5000/api/download?filename=${fullFilename}`;
 		const link = document.createElement('a');
 		link.href = fileUrl;
 		link.download = filename;
 		link.click();
 	};
 	
-	const deleteFile = (filename) => {
-		const fileUrl = `http://${host}:5000/api/delete?filename=${filename}`;
+	const deleteFile = (filename, pathInDirectory = '') => {
+		const fullFilename = pathInDirectory ? `${pathInDirectory}/${filename}` : filename;
+		const fileUrl = `http://${host}:5000/api/delete?filename=${fullFilename}`;
 		fetch(fileUrl, {
 			method: 'GET',
 		})
 		.then((response) => {
 			if (response.ok) {
-				setFiles(prevFiles => prevFiles.filter(file => file.name !== filename));
-			}
+				setFiles(prevFiles => {
+					const removeFile = (filesList) => {
+						return filesList.filter(file => {
+							if (file.type === 'directory') {
+								file.children = removeFile(file.children);
+							}
+							return file.name !== filename;
+						});
+					};
+					return removeFile(prevFiles);
+				});
+			}	
 		})
 		.catch(error => {
 			console.error('Error:', error);
 		});
 	}
 		
-	const renderFiles = (items) => {
+	const renderFiles = (items, pathInDirectory = '') => {
 		const directories = items.filter(item => item.type === 'directory');
 		const files = items.filter(item => item.type === 'file');
 
@@ -66,13 +78,12 @@ function FileList() {
 				return (
 					<li key={index} className="fileItem">
 						<div
-						className="fileNameFolder"
+						className="fileNameFolder bg-green-700 hover:bg-sky-700"
 						onClick={() => toggleDirectory(item.name)}
-						class="bg-green-700 hover:bg-sky-700"
 						>
 							{isExpanded ? '[-]' : '[+]'} {item.name}
 						</div>
-						{isExpanded && item.children && renderFiles(item.children)}
+						{isExpanded && item.children && renderFiles(item.children, `${pathInDirectory}/${item.name}`)}
 					</li>
 				);
 			})}
@@ -82,13 +93,13 @@ function FileList() {
 					<div className="fileName">{item.name}</div>
 					<button
 						className="bg-blue-500 text-white p-2 rounded"
-						onClick={() => downloadFile(item.name)}
+						onClick={() => downloadFile(item.name, pathInDirectory)}
 					>
 					⬇︎
 					</button>
 					<button
 						className="bg-blue-500 text-white p-2 rounded"
-						onClick={() => deleteFile(item.name)}
+						onClick={() => deleteFile(item.name, pathInDirectory)}
 					>
 					🗑
 					</button>
